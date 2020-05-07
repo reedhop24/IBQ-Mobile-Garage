@@ -4,6 +4,7 @@ import { Header } from 'react-native-elements';
 import GarageLookup from './components/garageLookup';
 import GarageConfirmation from './components/confirmation';
 import Map from './components/mapView';
+import {GOOGLE_MAP} from 'react-native-dotenv';
 import axios from 'axios';
 
 export default class GarageInfo extends React.Component {
@@ -25,7 +26,7 @@ export default class GarageInfo extends React.Component {
     if(this.state.address && this.state.city && this.state.state && this.state.zip){
       const paramAddr = this.state.address.trim().split(' ').join('+');
       const paramCity = this.state.address.trim().split(' ').join('+');
-      axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${paramAddr},+${paramCity},+${this.state.state.trim()},+${this.state.zip.trim()}&key=AIzaSyDimdTDogeyWcGr-Pmf9PKRwFpZqrvZvuI`)
+      axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${paramAddr},+${paramCity},+${this.state.state.trim()},+${this.state.zip.trim()}&key=${GOOGLE_MAP}`)
       .then(res => {
         if(typeof(res.data.results[0].geometry.location.lat) == undefined) {
           alert('Address is invalid');
