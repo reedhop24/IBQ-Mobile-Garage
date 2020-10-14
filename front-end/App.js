@@ -61,7 +61,7 @@ export default class GarageInfo extends React.Component {
       }
     }
 
-    axios.post('http://172.20.10.2:5000/GarageInfo', objToSend)
+    axios.post('http://${ip}:5000/GarageInfo', objToSend)
       .then(res => {
         this.setState({
           onConfirmation: true,
